@@ -52,7 +52,6 @@ public class LinkedHashMapImplementation extends AbstractMap{
                 coleccionUsuario.put(nombreCarta, newCarta);
                 System.out.println("Carta agregada correctamente");
 
-
             }else{
                 newCarta.setCantidad(1);
                 coleccionUsuario.put(nombreCarta, newCarta);
@@ -62,27 +61,57 @@ public class LinkedHashMapImplementation extends AbstractMap{
             System.out.println("La carta no existe en el archivo");
         }
 
-        for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
-            System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue().getTipoCarta() + " " + entry.getValue().getCantidad());
-        }
     }
 
     @Override
     void mostrarTipoCarta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarTipoCarta'");
+        System.out.println("Ingrese el nombre de la carta que desea ver:");
+        Scanner sc = new Scanner(System.in);
+        String nombreCarta = sc.nextLine();
+        if (coleccionUsuario.containsKey(nombreCarta)) {
+            System.out.println("Nombre: " + nombreCarta + ", Tipo: " + coleccionUsuario.get(nombreCarta).getTipoCarta());
+        }else{
+            System.out.println("La carta ingresada no existe en la colección");
+        }
     }
 
     @Override
     void mostrarColeccionUsuario() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuario'");
+        System.out.println("-----CARTAS-----\n");
+        if(!coleccionUsuario.isEmpty()){
+            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+                System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+            }
+        }else{
+            System.out.println("No hay cartas en la colección");
+        }
     }
 
     @Override
     void mostrarColeccionUsuarioOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuarioOrdenada'");
+        System.out.println("-----CARTAS ORDENAS POR TIPO-----\n");
+        if(!coleccionUsuario.isEmpty()){
+            System.out.println("*Cartas tipo Mounstruo:");
+            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+                if(entry.getValue().getTipoCarta().equals("Monstruo")){
+                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                }
+            }
+            System.out.println("*Cartas tipo Hechizo:");
+            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+                if(entry.getValue().getTipoCarta().equals("Hechizo")){
+                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                }
+            }
+            System.out.println("*Cartas tipo Trampa:");
+            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+                if(entry.getValue().getTipoCarta().equals("Trampa")){
+                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                }
+            }
+        }else{
+            System.out.println("No hay cartas en la colección");
+        }
     }
 
     @Override
