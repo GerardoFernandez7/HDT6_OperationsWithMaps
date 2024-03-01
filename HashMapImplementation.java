@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class HashMapImplementation extends AbstractMap{
 
     public static Map<String, String> hashMapTXT = new HashMap<>();
+    public static Map<String, String> hashMapColeccionUsuario = new HashMap<>();
 
     @Override
     public void leerArchivo(String archivoPath){
@@ -34,8 +36,16 @@ public class HashMapImplementation extends AbstractMap{
 
     @Override
     void agregarCarta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarCarta'");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el nombre de la carta que deseas agregar a su colección: ");
+        String nombreCarta = sc.nextLine();
+        // Se obtiene la carta del hashmap que contiene todas las cartas
+        if (hashMapTXT.get(nombreCarta) == null){
+            System.out.println("¡Carta no disponible!");
+        }else{
+            hashMapColeccionUsuario.put(nombreCarta, hashMapTXT.get(nombreCarta));
+            System.out.println("Carta agregada correctamente.");
+        }
     }
 
     @Override

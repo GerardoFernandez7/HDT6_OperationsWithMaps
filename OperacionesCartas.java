@@ -78,10 +78,10 @@ public class OperacionesCartas {
         Scanner sc = new Scanner(System.in);
         boolean continueProgram = true;
 
-        opcionesUsuario();
-        opcion = sc.nextInt();
-
+        map.leerArchivo("cards_desc.txt");
         while(continueProgram){
+            opcionesUsuario();
+            opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
                     map.agregarCarta();
