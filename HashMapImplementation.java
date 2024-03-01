@@ -2,8 +2,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class HashMapImplementation extends AbstractMap{
@@ -37,7 +35,7 @@ public class HashMapImplementation extends AbstractMap{
     }
 
     @Override
-    void agregarCarta() { // TOMAR EN CUENTA QUE PASA SI YA EXISTE LA CARTA AGREGAR VALIDACIÓN
+    void agregarCarta() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingresa el nombre de la carta que deseas agregar a su colección: ");
         String nombreCarta = sc.nextLine();
@@ -45,10 +43,16 @@ public class HashMapImplementation extends AbstractMap{
         if (hashMapTXT.get(nombreCarta) == null){
             System.out.println("¡Carta no disponible!");
         }else{
-            Carta carta = new Carta(nombreCarta);
-            hashMapColeccionUsuario.put(nombreCarta, hashMapTXT.get(nombreCarta));
+            Carta carta = new Carta(hashMapTXT.get(nombreCarta).getTipoCarta());
+            if (hashMapColeccionUsuario.containsKey(nombreCarta)){
+                int cantidad = hashMapColeccionUsuario.get(nombreCarta).getCantidad() + 1;
+                carta.setCantidad(cantidad);
+                hashMapColeccionUsuario.put(nombreCarta, carta);
+            }else {
+                carta.setCantidad(1);
+                hashMapColeccionUsuario.put(nombreCarta, carta);
+            }
             System.out.println("Carta agregada correctamente.");
-            System.out.println(hashMapTXT.get(nombreCarta).getTipoCarta() + ", " + hashMapTXT.get(nombreCarta).getCantidad());
         }
     }
 
@@ -59,34 +63,112 @@ public class HashMapImplementation extends AbstractMap{
         String nombreCarta = sc.nextLine();
         // Se obtiene la carta del hashmap que contiene todas las cartas
         if (hashMapTXT.get(nombreCarta) == null){
-            System.out.println("¡Carta no existen!");
+            System.out.println("¡Carta no existente!");
         }else{
-            System.out.println("El tipo de la carta (" + nombreCarta + ") es: " + hashMapTXT.get(nombreCarta));
+            System.out.println("El tipo de la carta (" + nombreCarta + ") es: " + hashMapTXT.get(nombreCarta).getTipoCarta());
         }
     }
 
     @Override
     void mostrarColeccionUsuario() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuario'");
+        if (hashMapColeccionUsuario.isEmpty()){
+            System.out.println("No posee ninguna carta");
+        }else{
+            for (Map.Entry<String, Carta> entry : hashMapColeccionUsuario.entrySet()) {
+                System.out.println("Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+            }
+        }
     }
 
     @Override
     void mostrarColeccionUsuarioOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuarioOrdenada'");
+        if (hashMapColeccionUsuario.isEmpty()) {
+            System.out.println("No posee ninguna carta");
+        } else {
+            boolean tieneMonstruos = false;
+            boolean tieneHechizos = false;
+            boolean tieneTrampas = false;
+
+            System.out.println("Cartas de tipo Monstruo: ");
+            for (Map.Entry<String, Carta> entry : hashMapColeccionUsuario.entrySet()) {
+                if (entry.getValue().getTipoCarta().equals("Monstruo")) {
+                    System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                    tieneMonstruos = true;
+                }
+            }
+            if (!tieneMonstruos) {
+                System.out.println("No tiene cartas de tipo Monstruo.");
+            }
+
+            System.out.println("Cartas de tipo Hechizo: ");
+            for (Map.Entry<String, Carta> entry : hashMapColeccionUsuario.entrySet()) {
+                if (entry.getValue().getTipoCarta().equals("Hechizo")) {
+                    System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                    tieneHechizos = true;
+                }
+            }
+            if (!tieneHechizos) {
+                System.out.println("No tiene cartas de tipo Hechizo.");
+            }
+
+            System.out.println("Cartas de tipo Trampa: ");
+            for (Map.Entry<String, Carta> entry : hashMapColeccionUsuario.entrySet()) {
+                if (entry.getValue().getTipoCarta().equals("Trampa")) {
+                    System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+                    tieneTrampas = true;
+                }
+            }
+            if (!tieneTrampas) {
+                System.out.println("No tiene cartas de tipo Trampa.");
+            }
+        }
     }
 
     @Override
     void mostrarCartasExistente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistente'");
+        for (Map.Entry<String, Carta> entry : hashMapTXT.entrySet()) {
+            System.out.println("Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+        }
     }
 
     @Override
     void mostrarCartasExistenteOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistenteOrdenada'");
+        boolean tieneMonstruos = false;
+        boolean tieneHechizos = false;
+        boolean tieneTrampas = false;
+
+        System.out.println("Cartas de tipo Monstruo: ");
+        for (Map.Entry<String, Carta> entry : hashMapTXT.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Monstruo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneMonstruos = true;
+            }
+        }
+        if (!tieneMonstruos) {
+            System.out.println("No tiene cartas de tipo Monstruo.");
+        }
+
+        System.out.println("Cartas de tipo Hechizo: ");
+        for (Map.Entry<String, Carta> entry : hashMapTXT.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Hechizo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneHechizos = true;
+            }
+        }
+        if (!tieneHechizos) {
+            System.out.println("No tiene cartas de tipo Hechizo.");
+        }
+
+        System.out.println("Cartas de tipo Trampa: ");
+        for (Map.Entry<String, Carta> entry : hashMapTXT.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Trampa")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneTrampas = true;
+            }
+        }
+        if (!tieneTrampas) {
+            System.out.println("No tiene cartas de tipo Trampa.");
+        }
     }
     
 }

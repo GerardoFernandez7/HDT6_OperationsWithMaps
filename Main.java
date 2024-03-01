@@ -3,5 +3,4 @@ public class Main {
         OperacionesCartas operacionesCartas = new OperacionesCartas();
         operacionesCartas.typeHash();
     }
-
 }
