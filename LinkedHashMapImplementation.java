@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class LinkedHashMapImplementation extends AbstractMap{
     /**
      * Lee información relevante desde un archivo.
      *
-     * @param archivoTXT
+     * @param archivoTXT archivo txt que contiene todas las cartas
      */
     @Override
     void leerArchivo(String archivoTXT) {
@@ -55,6 +56,8 @@ public class LinkedHashMapImplementation extends AbstractMap{
             }else{
                 newCarta.setCantidad(1);
                 coleccionUsuario.put(nombreCarta, newCarta);
+                System.out.println("Carta agregada correctamente");
+
             }
 
         } else {
@@ -89,25 +92,20 @@ public class LinkedHashMapImplementation extends AbstractMap{
 
     @Override
     void mostrarColeccionUsuarioOrdenada() {
-        System.out.println("-----CARTAS ORDENAS POR TIPO-----\n");
-        if(!coleccionUsuario.isEmpty()){
-            System.out.println("*Cartas tipo Mounstruo:");
-            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
-                if(entry.getValue().getTipoCarta().equals("Monstruo")){
-                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
-                }
-            }
-            System.out.println("*Cartas tipo Hechizo:");
-            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
-                if(entry.getValue().getTipoCarta().equals("Hechizo")){
-                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
-                }
-            }
-            System.out.println("*Cartas tipo Trampa:");
-            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
-                if(entry.getValue().getTipoCarta().equals("Trampa")){
-                    System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
-                }
+        //Imprimir las cartas ordenadas por tipo
+        System.out.println("-----CARTAS ORDENADAS POR TIPO-----\n");
+        coleccionUsuario.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.comparing(Carta::getTipoCarta)))
+                .forEach(entry ->   System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad()));
+    }
+
+    @Override
+    void mostrarCartasExistente() {
+        System.out.println("-----CARTAS EXISTENTES-----\n");
+        if(!linkedHashMapTXT.isEmpty()){
+            for (Map.Entry<String, String> entry : linkedHashMapTXT.entrySet()) {
+                System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
             }
         }else{
             System.out.println("No hay cartas en la colección");
@@ -115,15 +113,13 @@ public class LinkedHashMapImplementation extends AbstractMap{
     }
 
     @Override
-    void mostrarCartasExistente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistente'");
-    }
-
-    @Override
     void mostrarCartasExistenteOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistenteOrdenada'");
+        System.out.println("-----CARTAS ORDENADAS POR TIPO-----\n");
+        //Imprimir las cartas ordenadas por tipo
+        linkedHashMapTXT.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(entry -> System.out.println(entry.getKey() + " - " + entry.getValue()));
     }
 
     
