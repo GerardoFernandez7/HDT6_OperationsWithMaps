@@ -1,22 +1,22 @@
+import java.io.IOException;
+
 public abstract class AbstractMap {
     /**
      * Lee información relevante desde un archivo.
      */
-    abstract void leerArchivo();
+    abstract void leerArchivo(String nombreArchivo);
 
     /**
      * Agrega una nueva carta a la colección.
-     * 
-     * @param nombreCarta El nombre de la carta que se va a agregar.
+     *
      */
-    abstract void agregarCarta(String nombreCarta);
+    abstract void agregarCarta();
 
     /**
      * Muestra el tipo de una carta específica.
-     * 
-     * @param nombreCarta El nombre de la carta de la cual se mostrará el tipo.
+     *
      */
-    abstract void mostrarTipoCarta(String nombreCarta);
+    abstract void mostrarTipoCarta();
 
     /**
      * Muestra la colección de cartas del usuario.
