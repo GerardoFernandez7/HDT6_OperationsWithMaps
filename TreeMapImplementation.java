@@ -66,32 +66,100 @@ public class TreeMapImplementation extends AbstractMap{
 
     @Override
     void mostrarTipoCarta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarTipoCarta'");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el nombre de la carta que deseas saber que tipo es: ");
+        String nombreCarta = sc.nextLine();
+        if (treeMapTXT.get(nombreCarta) != null){
+            System.out.println("El tipo de la carta (" + nombreCarta + ") es: " + treeMapTXT.get(nombreCarta).getTipoCarta());
+        }else{
+            System.out.println("¡Carta no existente!");
+        }
     }
 
     @Override
     void mostrarColeccionUsuario() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuario'");
+        if (!coleccionUsuario.isEmpty()){
+            for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+                System.out.println("Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad());
+            }
+        }else{
+            System.out.println("No posee ninguna carta");
+        }
     }
 
     @Override
     void mostrarColeccionUsuarioOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColeccionUsuarioOrdenada'");
+
+        boolean tieneMonstruos = false;
+        boolean tieneHechizos = false;
+        boolean tieneTrampas = false;
+
+        System.out.println("Cartas de tipo Monstruo: ");
+        for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Monstruo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneMonstruos = true;
+            }
+        }
+        if (!tieneMonstruos) {
+            System.out.println("No tiene cartas de tipo Monstruo.");
+        }
+
+        System.out.println("Cartas de tipo Hechizo: ");
+        for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Hechizo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneHechizos = true;
+            }
+        }
+        if (!tieneHechizos) {
+            System.out.println("No tiene cartas de tipo Hechizo.");
+        }
+
+        System.out.println("Cartas de tipo Trampa: ");
+        for (Map.Entry<String, Carta> entry : coleccionUsuario.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Trampa")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneTrampas = true;
+            }
+        }
+        if (!tieneTrampas) {
+            System.out.println("No tiene cartas de tipo Trampa.");
+        }
     }
 
     @Override
     void mostrarCartasExistente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistente'");
+        for (Map.Entry<String, Carta> entry : treeMapTXT.entrySet()) {
+            System.out.println("Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+        }
     }
 
     @Override
     void mostrarCartasExistenteOrdenada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCartasExistenteOrdenada'");
-    }
-    
+        boolean tieneMonstruos = false;
+        boolean tieneHechizos = false;
+        boolean tieneTrampas = false;
+
+        System.out.println("Cartas de tipo Monstruo: ");
+        for (Map.Entry<String, Carta> entry : treeMapTXT.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Monstruo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneMonstruos = true;
+            }
+        }
+        if (!tieneMonstruos) {
+            System.out.println("No tiene cartas de tipo Monstruo.");
+        }
+
+        System.out.println("Cartas de tipo Hechizo: ");
+        for (Map.Entry<String, Carta> entry : treeMapTXT.entrySet()) {
+            if (entry.getValue().getTipoCarta().equals("Hechizo")) {
+                System.out.println("- Nombre Carta: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta());
+                tieneHechizos = true;
+            }
+        }
+        if (!tieneHechizos) {
+            System.out.println("No tiene cartas de tipo Hechizo.");
+        }
 }

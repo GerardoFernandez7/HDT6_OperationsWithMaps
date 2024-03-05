@@ -10,7 +10,6 @@ public class OperacionesCartas {
         int opcion = 0;
         boolean continueProgram = true;
 
-
         while(continueProgram){
             // Mensaje
             System.out.println();
@@ -57,7 +56,6 @@ public class OperacionesCartas {
                     break;
             }
         }
-
     }
 
     public void opcionesUsuario(){
@@ -72,14 +70,14 @@ public class OperacionesCartas {
         System.out.println("7. Regresar a menú principal");
     }
 
-    public void accionesUsuario(){
+    public void accionesUsuario() {
         // Variables del método
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
         boolean continueProgram = true;
 
         map.leerArchivo("cards_desc.txt");
-        while(continueProgram){
+        while (continueProgram) {
             opcionesUsuario();
             opcion = sc.nextInt();
             switch (opcion) {
@@ -108,8 +106,6 @@ public class OperacionesCartas {
                     System.out.println("Opción no válida");
                     break;
             }
-
         }
     }
-    
 }

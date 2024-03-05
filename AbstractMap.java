@@ -1,6 +1,7 @@
 import java.io.IOException;
 
 public abstract class AbstractMap {
+
     /**
      * Lee información relevante desde un archivo.
      */

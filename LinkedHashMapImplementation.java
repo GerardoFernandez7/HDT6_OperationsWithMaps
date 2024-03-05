@@ -121,6 +121,4 @@ public class LinkedHashMapImplementation extends AbstractMap{
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(entry -> System.out.println(entry.getKey() + " - " + entry.getValue()));
     }
-
-    
 }
