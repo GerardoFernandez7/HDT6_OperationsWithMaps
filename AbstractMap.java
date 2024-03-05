@@ -1,5 +1,8 @@
 import java.io.IOException;
 
+/**
+ * La clase AbstractMap representa una abstracción de un mapa de cartas.
+ */
 public abstract class AbstractMap {
 
     /**

@@ -4,11 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 
+/**
+ * La clase HashMapImplementation proporciona una implementación concreta de AbstractMap utilizando HashMap para almacenar las cartas.
+ */
 public class HashMapImplementation extends AbstractMap{
 
+    /** Un HashMap para almacenar las cartas leídas desde un archivo de texto. */
     public static Map<String, Carta> hashMapTXT = new HashMap<>();
+
+    /** Un HashMap para almacenar las cartas pertenecientes a la colección del usuario. */
     public static Map<String, Carta> hashMapColeccionUsuario = new HashMap<>();
 
+    /**
+     * Lee información relevante desde un archivo de texto y almacena las cartas en el HashMap.
+     *
+     * @param archivoPath La ruta del archivo de texto que contiene la información de las cartas.
+     */
     @Override
     public void leerArchivo(String archivoPath){
         try (BufferedReader br = new BufferedReader(new FileReader(archivoPath))) {
@@ -34,6 +45,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Permite al usuario agregar una carta a su colección.
+     */
     @Override
     void agregarCarta() {
         Scanner sc = new Scanner(System.in);
@@ -56,6 +70,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra el tipo de una carta específica.
+     */
     @Override
     void mostrarTipoCarta() {
         Scanner sc = new Scanner(System.in);
@@ -69,6 +86,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario.
+     */
     @Override
     void mostrarColeccionUsuario() {
         if (hashMapColeccionUsuario.isEmpty()){
@@ -80,6 +100,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario ordenada por tipo.
+     */
     @Override
     void mostrarColeccionUsuarioOrdenada() {
         if (hashMapColeccionUsuario.isEmpty()) {
@@ -124,6 +147,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra todas las cartas existentes.
+     */
     @Override
     void mostrarCartasExistente() {
         for (Map.Entry<String, Carta> entry : hashMapTXT.entrySet()) {
@@ -131,6 +157,9 @@ public class HashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra todas las cartas existentes ordenadas por tipo.
+     */
     @Override
     void mostrarCartasExistenteOrdenada() {
         boolean tieneMonstruos = false;
@@ -170,5 +199,4 @@ public class HashMapImplementation extends AbstractMap{
             System.out.println("No tiene cartas de tipo Trampa.");
         }
     }
-    
 }

@@ -5,10 +5,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * La clase LinkedHashMapImplementation proporciona una implementación concreta de AbstractMap utilizando LinkedHashMap para almacenar las cartas.
+ */
 public class LinkedHashMapImplementation extends AbstractMap{
+
+    /** Un LinkedHashMap para almacenar las cartas leídas desde un archivo de texto. */
     public LinkedHashMapImplementation(){
     }
+
+    /** Un LinkedHashMap para almacenar las cartas leídas desde un archivo de texto. */
     public static Map<String, String> linkedHashMapTXT = new LinkedHashMap<>();
+
+    /** Un LinkedHashMap para almacenar las cartas pertenecientes a la colección del usuario. */
     public static Map<String, Carta> coleccionUsuario = new LinkedHashMap<>();
 
     /**
@@ -39,6 +48,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Permite al usuario agregar una carta a su colección.
+     */
     @Override
     void agregarCarta() {
         System.out.println("Ingrese el nombre de la carta que desea agregar:");
@@ -66,6 +78,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
 
     }
 
+    /**
+     * Muestra el tipo de una carta específica.
+     */
     @Override
     void mostrarTipoCarta() {
         System.out.println("Ingrese el nombre de la carta que desea ver:");
@@ -78,6 +93,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario.
+     */
     @Override
     void mostrarColeccionUsuario() {
         System.out.println("-----CARTAS-----\n");
@@ -90,6 +108,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario ordenada por tipo.
+     */
     @Override
     void mostrarColeccionUsuarioOrdenada() {
         //Imprimir las cartas ordenadas por tipo
@@ -100,6 +121,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
                 .forEach(entry ->   System.out.println("  Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue().getTipoCarta() + ", Cantidad: " + entry.getValue().getCantidad()));
     }
 
+    /**
+     * Muestra todas las cartas existentes.
+     */
     @Override
     void mostrarCartasExistente() {
         System.out.println("-----CARTAS EXISTENTES-----\n");
@@ -112,6 +136,9 @@ public class LinkedHashMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra todas las cartas existentes ordenadas por tipo.
+     */
     @Override
     void mostrarCartasExistenteOrdenada() {
         System.out.println("-----CARTAS ORDENADAS POR TIPO-----\n");

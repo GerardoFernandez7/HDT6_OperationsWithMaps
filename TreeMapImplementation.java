@@ -4,19 +4,32 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+/**
+ * La clase TreeMapImplementation proporciona una implementación específica de un mapa basado en un TreeMap.
+ */
 public class TreeMapImplementation extends AbstractMap{
 
+    /**
+     * Constructor por defecto de TreeMapImplementation.
+     */
     public TreeMapImplementation(){
 
     }
 
+    /**
+     * Mapa que almacena las cartas del archivo de texto.
+     */
     public static Map<String, Carta> treeMapTXT = new TreeMap<>();
+
+    /**
+     * Mapa que almacena las cartas de la colección del usuario.
+     */
     public static Map<String, Carta> coleccionUsuario = new TreeMap<>();
 
     /**
-     * Lee información relevante desde un archivo.
+     * Lee información relevante desde un archivo y carga los datos en el TreeMap.
      *
-     * @param nombreArchivo
+     * @param nombreArchivo el nombre del archivo desde el cual se leen las cartas
      */
     @Override
     void leerArchivo(String nombreArchivo) {
@@ -43,6 +56,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Permite al usuario agregar una carta a su colección.
+     */
     @Override
     void agregarCarta() {
         Scanner sc = new Scanner(System.in);
@@ -64,6 +80,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra el tipo de una carta específica solicitada por el usuario.
+     */
     @Override
     void mostrarTipoCarta() {
         Scanner sc = new Scanner(System.in);
@@ -76,6 +95,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario, incluyendo el nombre, tipo y cantidad de cada carta.
+     */
     @Override
     void mostrarColeccionUsuario() {
         if (!coleccionUsuario.isEmpty()){
@@ -87,6 +109,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra la colección de cartas del usuario ordenada por tipo, incluyendo el nombre y tipo de cada carta.
+     */
     @Override
     void mostrarColeccionUsuarioOrdenada() {
 
@@ -128,6 +153,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra el nombre y tipo de todas las cartas existentes.
+     */
     @Override
     void mostrarCartasExistente() {
         for (Map.Entry<String, Carta> entry : treeMapTXT.entrySet()) {
@@ -135,6 +163,9 @@ public class TreeMapImplementation extends AbstractMap{
         }
     }
 
+    /**
+     * Muestra el nombre y tipo de todas las cartas existentes, ordenadas por tipo.
+     */
     @Override
     void mostrarCartasExistenteOrdenada() {
         boolean tieneMonstruos = false;
